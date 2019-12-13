@@ -1,7 +1,7 @@
 {
-  "name": "webpack-react",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "基于webpack构建的react项目",
+  "description": "{{ description }}",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "dev": "webpack-dev-server --inline --config ./config/webpack.dev.config.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "{{ author }}",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.7.5",
