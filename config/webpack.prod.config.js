@@ -4,15 +4,23 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2019-12-13 09:50:03
+ * @LastEditTime: 2019-12-13 10:14:34
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
-
+// 打包编译前清理dist目录
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// 压缩插件
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
+  output: {
+    filename: 'js/[name].[chunkhash:8].bundle.js'
+  },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -29,6 +37,31 @@ module.exports = merge(common, {
       // minify：压缩html文件
       // removeComments：去除注释
       // collapseWhitespace：去除空格
-    })
-  ]
+    }),
+    new CleanWebpackPlugin()
+  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin()
+    ],
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      maxSize: 0,
+      minChunks: 1,
+      cacheGroups: {
+        framework: {
+          test: 'framework',
+          name: 'framework',
+          enforce: true
+        },
+        vendors: {
+          priority: -10,
+          test: /node_modules/,
+          name: 'vendor',
+          enforce: true
+        }
+      }
+    }
+  }
 })
