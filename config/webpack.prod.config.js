@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2019-12-13 10:14:34
+ * @LastEditTime: 2019-12-13 10:53:42
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -15,6 +15,9 @@ const {
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 压缩插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// 打包独立的css插件
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -38,11 +41,28 @@ module.exports = merge(common, {
       // removeComments：去除注释
       // collapseWhitespace：去除空格
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[id].[hash].css'
+    })
   ],
   optimization: {
     minimizer: [
-      new UglifyJsPlugin()
+      new UglifyJsPlugin(),
+      new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: {
+          preset: ['default', {
+            discardComments: {
+              removeAll: true
+            }
+          }],
+          canPrint: false
+          // 表示插件能够在console中打印信息，默认值是true
+        }
+      })
     ],
     splitChunks: {
       chunks: 'all',
@@ -63,5 +83,31 @@ module.exports = merge(common, {
         }
       }
     }
+  },
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'postcss-loader'
+      ]
+    }, {
+      test: /\.less$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'less-loader',
+        'postcss-loader'
+      ]
+    }, {
+      test: /\.(sass|scss)$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'sass-loader',
+        'postcss-loader'
+      ]
+    }]
   }
 })
