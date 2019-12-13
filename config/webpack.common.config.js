@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors: chenArno
- * @LastEditTime: 2019-12-13 11:07:26
+ * @LastEditTime: 2019-12-13 11:20:34
  */
 const path = require('path');
 
@@ -18,6 +18,7 @@ module.exports = {
     filename: 'js/bundle.js',
     path: path.resolve(__dirname, '../dist')
   },
+  devtool: 'cheap-module-eval-source-map',
   module: {
     rules: [{
       test: /\.(js|jsx)$/,
@@ -54,6 +55,15 @@ module.exports = {
           name: '[name].[ext]',
           outputPath: 'images/',
           limit: 8192
+        }
+      }
+    }, {
+      test: /\.(eot|ttf|svg|woff|woff2)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: '[name]_[hash].[ext]',
+          outputPath: 'font/'
         }
       }
     }]
