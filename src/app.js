@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:57:20
  * @LastEditors: chenArno
- * @LastEditTime: 2019-12-13 14:20:56
+ * @LastEditTime: 2019-12-14 13:58:02
  */
 
 import React from 'react'
@@ -15,8 +15,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>i have change {this.props.name}</h1>
-        <img src={background} />
+        <h1>weclome {this.props.name}</h1>
+        {/* <img src={background} /> */}
         {console.log('ccccccc')}
       </div>
     )

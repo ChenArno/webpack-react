@@ -10,4 +10,4 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './app'
 
-ReactDOM.render(<App name="react" />, document.getElementById('root'))
+ReactDOM.render(<App name="wrt" />, document.getElementById('root'))
