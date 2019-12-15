@@ -1,9 +1,9 @@
 {
-	"presets":[
+	"presets": [
 		[
 			"@babel/preset-env",
 			{
-				"targets":{
+				"targets": {
 					// 大于相关浏览器版本无需用到preset-env
 					"edge": 17,
 					"firefox": 60,
@@ -16,5 +16,8 @@
 			}
 		],
 		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-proposal-class-properties"
 	]
 }
