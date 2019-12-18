@@ -1,4 +1,5 @@
+# node:
 node_modules
 .vscode
 dist
-yarn-error.log
+*.log
