@@ -28,7 +28,9 @@ module.exports = {
       '@': resolve('src'), // 这样配置后 @ 可以指向 src 目录
       views: resolve('src/views'),
       assets: resolve('src/assets')
-    }
+    },
+    // 省略后缀名
+    extensions: ['.js', '.jsx', '.json']
   },
   devtool: 'cheap-module-eval-source-map',
   module: {
