@@ -1,17 +1,15 @@
 /*
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
- * @LastEditors: chenArno
- * @LastEditTime: 2019-12-13 10:53:42
+ * @LastEditors  : chenArno
+ * @LastEditTime : 2019-12-20 11:03:35
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
 // 打包编译前清理dist目录
-const {
-  CleanWebpackPlugin
-} = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 压缩插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
@@ -25,6 +23,10 @@ module.exports = merge(common, {
     filename: 'js/[name].[chunkhash:8].bundle.js'
   },
   plugins: [
+    // 环境变量配置
+    new webpack.DefinePlugin({
+      'process.env': require('./prod.env')
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       // public/index.html无论与要用的template是不是在一个目录，都是从根路径开始查找
@@ -54,11 +56,14 @@ module.exports = merge(common, {
         assetNameRegExp: /\.css$/g,
         cssProcessor: require('cssnano'),
         cssProcessorOptions: {
-          preset: ['default', {
-            discardComments: {
-              removeAll: true
+          preset: [
+            'default',
+            {
+              discardComments: {
+                removeAll: true
+              }
             }
-          }],
+          ],
           canPrint: false
           // 表示插件能够在console中打印信息，默认值是true
         }
@@ -85,29 +90,29 @@ module.exports = merge(common, {
     }
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'postcss-loader'
-      ]
-    }, {
-      test: /\.less$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'less-loader',
-        'postcss-loader'
-      ]
-    }, {
-      test: /\.(sass|scss)$/,
-      use: [
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        'sass-loader',
-        'postcss-loader'
-      ]
-    }]
+    rules: [
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader',
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+          'postcss-loader'
+        ]
+      }
+    ]
   }
 })

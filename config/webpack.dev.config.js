@@ -3,8 +3,8 @@
  * @version: 
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
- * @LastEditors: chenArno
- * @LastEditTime: 2019-12-15 10:49:43
+ * @LastEditors  : chenArno
+ * @LastEditTime : 2019-12-20 11:03:23
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -31,6 +31,10 @@ module.exports = merge(common, {
     overlay: true,
   },
   plugins: [
+    // 环境变量配置
+    new webpack.DefinePlugin({
+      'process.env': require('./dev.env')
+    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       inject: 'body',
