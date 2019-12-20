@@ -31,10 +31,6 @@ module.exports = merge(common, {
     overlay: true,
   },
   plugins: [
-    // 环境变量配置
-    new webpack.DefinePlugin({
-      'process.env': require('./dev.env')
-    }),
     new HtmlWebpackPlugin({
       template: 'public/index.html',
       inject: 'body',

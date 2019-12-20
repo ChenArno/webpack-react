@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 11:24:31
+ * @LastEditTime : 2019-12-20 15:36:58
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -15,7 +15,7 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    index: './src/index.js',
+    index: './src/index.tsx',
     // 这部分不变的代码单独打包
     framework: ['react', 'react-dom']
   },
@@ -31,7 +31,7 @@ module.exports = {
       assets: resolve('src/assets')
     },
     // 省略后缀名
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json', 'ts', 'tsx']
   },
   devtool: 'cheap-module-eval-source-map',
   // WebPack 警告WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).解决
@@ -45,7 +45,7 @@ module.exports = {
     }
   },
   plugins: [
-   // 环境变量配置
+    // 环境变量配置
     new webpack.DefinePlugin({
       'process.env': require(`./${process.env.NODE_ENV}.env`)
     })
@@ -55,6 +55,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/
       },
       {
