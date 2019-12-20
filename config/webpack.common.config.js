@@ -4,9 +4,10 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 10:23:46
+ * @LastEditTime : 2019-12-20 11:23:59
  */
 const path = require('path')
+const webpack = require('webpack')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -43,6 +44,11 @@ module.exports = {
       return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
     }
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require(`./${process.env.NODE_ENV}.env`)
+    })
+  ],
   module: {
     rules: [
       {

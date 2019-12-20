@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --env.NODE_ENV=prod --progress --config ./config/webpack.prod.config.js",
-    "dev": "webpack-dev-server --env.NODE_ENV=dev --progress --inline --config ./config/webpack.dev.config.js"
+    "build": "cross-env NODE_ENV=prod webpack --env.NODE_ENV=prod --progress --config ./config/webpack.prod.config.js",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --env.NODE_ENV=dev --progress --inline --config ./config/webpack.dev.config.js"
   },
   "keywords": [],
   "author": "{{author}}",
