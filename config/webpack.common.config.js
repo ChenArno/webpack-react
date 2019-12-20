@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-19 13:07:16
+ * @LastEditTime : 2019-12-20 10:23:46
  */
 const path = require('path')
 
@@ -33,6 +33,16 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json']
   },
   devtool: 'cheap-module-eval-source-map',
+  // WebPack 警告WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).解决
+  performance: {
+    hints: 'warning', // 枚举
+    maxAssetSize: 30000000, // 整数类型（以字节为单位）
+    maxEntrypointSize: 50000000, // 整数类型（以字节为单位）
+    assetFilter: function(assetFilename) {
+      // 提供资源文件名的断言函数
+      return assetFilename.endsWith('.css') || assetFilename.endsWith('.js')
+    }
+  },
   module: {
     rules: [
       {
@@ -60,6 +70,7 @@ module.exports = {
             name: '[name].[ext]',
             outputPath: 'images/',
             limit: 8192
+            // 小于等于8K的图片会被转成base64编码，直接插入HTML中，减少HTTP请求。
           }
         }
       },
