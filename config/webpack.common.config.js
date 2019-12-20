@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 11:23:59
+ * @LastEditTime : 2019-12-20 11:24:31
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -45,6 +45,7 @@ module.exports = {
     }
   },
   plugins: [
+   // 环境变量配置
     new webpack.DefinePlugin({
       'process.env': require(`./${process.env.NODE_ENV}.env`)
     })
