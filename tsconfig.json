@@ -4,15 +4,12 @@
     "target": "es6",
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": ".",
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
-    "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
-    "sourceMap": true,
-    "allowJs": true
+    "sourceMap": true
   },
   "include": [
     "src/**/*"
