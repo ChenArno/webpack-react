@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 15:40:44
+ * @LastEditTime : 2019-12-24 10:07:18
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -17,7 +17,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 
-module.exports = merge(common, {
+const webpackProdConfig = merge(common, {
   mode: 'production',
   output: {
     filename: 'js/[name].[chunkhash:8].bundle.js'
@@ -112,3 +112,5 @@ module.exports = merge(common, {
     ]
   }
 })
+
+module.exports = webpackProdConfig
