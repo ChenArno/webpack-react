@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-24 10:06:58
+ * @LastEditTime : 2019-12-24 10:08:07
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -44,13 +44,13 @@ const webpackDevConfig = merge(common, {
     // 设置devServer.hot为true，并且在plugins中引入HotModuleReplacementPlugin插件即可。
     // 还需要注意的是我们开启了hot，
     // 那么导出不能使用chunkhash，需要替换为hash。
-    new FriendlyErrorsWebpackPlugin({
-      compilationSuccessInfo: {
-        messages: [`Your application is running here:http://127.0.0.1:8000`]
-      },
-      // onErrors:,
-      clearConsole: true
-    })
+    // new FriendlyErrorsWebpackPlugin({
+    //   compilationSuccessInfo: {
+    //     messages: [`Your application is running here:http://127.0.0.1:8000`]
+    //   },
+    //   // onErrors:,
+    //   clearConsole: true
+    // })
   ]
 })
 
