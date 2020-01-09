@@ -4,8 +4,9 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-27 10:56:04
+ * @LastEditTime : 2020-01-09 11:02:12
  */
+const path = require('path')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
 // 打包编译前清理dist目录
@@ -13,6 +14,8 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 // 压缩插件
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+// 拷贝文件
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 // 打包独立的css插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
@@ -36,6 +39,14 @@ const webpackProdConfig = merge(common, {
       },
       title: 'Hello wrt-cli'
     }),
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../dist'),
+        ignore: ['.*']
+      }
+    ]),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
