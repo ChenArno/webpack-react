@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors: chenArno
- * @LastEditTime: 2020-02-26 10:23:57
+ * @LastEditTime: 2020-02-26 15:14:31
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -31,7 +31,7 @@ module.exports = {
       assets: resolve('src/assets')
     },
     // 省略后缀名
-    extensions: ['.js', '.jsx', '.json', 'ts', 'tsx']
+    extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
   },
   devtool: 'cheap-module-eval-source-map',
   // WebPack 警告WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).解决
