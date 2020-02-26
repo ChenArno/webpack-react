@@ -3,13 +3,16 @@
     "module": "commonjs",
     "target": "es6",
     "jsx": "react",
+    // 解决ts混用js模块
+    "allowJs": true,
     "moduleResolution": "node",
     "noImplicitThis": true,
     "noImplicitAny": true,
     "importHelpers": true,
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "removeComments": true, // 编译 js 的时候，删除掉注释
   },
   "include": [
     "src/**/*"
