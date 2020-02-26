@@ -3,8 +3,8 @@
  * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
- * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-20 15:36:58
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-02-26 10:23:57
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -27,7 +27,7 @@ module.exports = {
     // 设置别名
     alias: {
       '@': resolve('src'), // 这样配置后 @ 可以指向 src 目录
-      views: resolve('src/views'),
+      pages: resolve('src/pages'),
       assets: resolve('src/assets')
     },
     // 省略后缀名
