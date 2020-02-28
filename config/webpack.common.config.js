@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors: chenArno
- * @LastEditTime: 2020-02-26 15:14:31
+ * @LastEditTime: 2020-02-28 15:38:35
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -15,7 +15,8 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    index: './src/index.tsx',
+    // babel-polyfill 兼容性问题
+    index: ['babel-polyfill', 'react-hot-loader/patch', './src/index.tsx'],
     // 这部分不变的代码单独打包
     framework: ['react', 'react-dom']
   },
@@ -28,7 +29,8 @@ module.exports = {
     alias: {
       '@': resolve('src'), // 这样配置后 @ 可以指向 src 目录
       pages: resolve('src/pages'),
-      assets: resolve('src/assets')
+      assets: resolve('src/assets'),
+      'react-dom': '@hot-loader/react-dom'
     },
     // 省略后缀名
     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
