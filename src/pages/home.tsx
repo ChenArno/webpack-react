@@ -1,4 +1,5 @@
 import * as React from 'react'
+import './index.less'
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
@@ -6,7 +7,7 @@ class Home extends React.Component<any, any> {
   }
 
   render() {
-    return <div>weclome Home</div>
+    return <div className="wrt-index">weclome Home</div>
   }
 }
 

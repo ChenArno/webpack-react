@@ -3,8 +3,8 @@
  * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
- * @LastEditors  : chenArno
- * @LastEditTime : 2020-01-09 11:02:12
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-03-02 13:38:54
  */
 const path = require('path')
 const merge = require('webpack-merge')
@@ -55,7 +55,13 @@ const webpackProdConfig = merge(common, {
   ],
   optimization: {
     minimizer: [
-      new UglifyJsPlugin(),
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_console: true
+          }
+        }
+      }),
       new OptimizeCssAssetsPlugin({
         assetNameRegExp: /\.css$/g,
         cssProcessor: require('cssnano'),
