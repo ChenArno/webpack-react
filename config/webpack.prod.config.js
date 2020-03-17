@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2020-03-02 13:38:54
+ * @LastEditTime: 2020-03-17 17:45:11
  */
 const path = require('path')
 const merge = require('webpack-merge')
@@ -107,11 +107,31 @@ const webpackProdConfig = merge(common, {
       },
       {
         test: /\.less$/,
+        // 表示哪些目录中的 .js 文件不要进行 babel-loader
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
+            }
+          },
+          'postcss-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
+        // 表示哪些目录中的 .js 文件不要进行 babel-loader
+        include: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          'less-loader',
-          'postcss-loader'
+          'postcss-loader',
+          'less-loader'
         ]
       },
       {

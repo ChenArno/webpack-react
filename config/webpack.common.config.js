@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors: chenArno
- * @LastEditTime: 2020-02-28 15:38:35
+ * @LastEditTime: 2020-03-17 17:36:17
  */
 const path = require('path')
 const webpack = require('webpack')
@@ -63,18 +63,6 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
-      },
-      {
-        test: /\.(sass|scss)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.(jpg|png|gif)$/,

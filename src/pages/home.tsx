@@ -1,5 +1,5 @@
 import * as React from 'react'
-import './index.less'
+import styles from './index.less'
 
 class Home extends React.Component<any, any> {
   constructor(props: any) {
@@ -7,7 +7,7 @@ class Home extends React.Component<any, any> {
   }
 
   render() {
-    return <div className="wrt-index">weclome Home</div>
+    return <div className={styles['wrt-index']}>weclome Home</div>
   }
 }
 

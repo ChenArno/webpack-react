@@ -3,8 +3,8 @@
  * @version:
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
- * @LastEditors  : chenArno
- * @LastEditTime : 2019-12-24 10:08:07
+ * @LastEditors: chenArno
+ * @LastEditTime: 2020-03-17 17:36:42
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -39,7 +39,7 @@ const webpackDevConfig = merge(common, {
       inject: 'body',
       hash: false
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin()
     // HotModuleReplacementPlugin是webpack热更新的插件，
     // 设置devServer.hot为true，并且在plugins中引入HotModuleReplacementPlugin插件即可。
     // 还需要注意的是我们开启了hot，
@@ -51,7 +51,60 @@ const webpackDevConfig = merge(common, {
     //   // onErrors:,
     //   clearConsole: true
     // })
-  ]
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
+            }
+          },
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader']
+      },
+      {
+        test: /\.less$/,
+        // 表示哪些目录中的 .js 文件不要进行 babel-loader
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]__[local]__[hash:base64:5]'
+              }
+            }
+          },
+          'postcss-loader',
+          'less-loader'
+        ]
+      },
+      {
+        test: /\.less$/,
+        // 表示哪些目录中的 .js 文件不要进行 babel-loader
+        include: /node_modules/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+      },
+      {
+        test: /\.(sass|scss)$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+      }
+    ]
+  }
 })
 
 module.exports = new Promise((resolve, reject) => {
