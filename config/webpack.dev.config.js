@@ -4,11 +4,12 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:42
  * @LastEditors: chenArno
- * @LastEditTime: 2020-03-17 17:36:42
+ * @LastEditTime: 2020-03-21 09:47:24
  */
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
 const path = require('path')
+const { outDirSrc } = require('./utils')
 
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -22,7 +23,7 @@ const webpackDevConfig = merge(common, {
     filename: 'js/[name].[hash:8].bundle.js'
   },
   devServer: {
-    contentBase: path.resolve(__dirname, '../dist'),
+    contentBase: outDirSrc,
     open: true,
     port: PORT,
     compress: true,

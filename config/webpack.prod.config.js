@@ -4,8 +4,9 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2020-03-17 17:45:11
+ * @LastEditTime: 2020-03-21 09:47:40
  */
+const { outDirSrc } = require('./utils')
 const path = require('path')
 const merge = require('webpack-merge')
 const common = require('./webpack.common.config')
@@ -43,7 +44,7 @@ const webpackProdConfig = merge(common, {
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../public'),
-        to: path.resolve(__dirname, '../dist'),
+        to: outDirSrc,
         ignore: ['.*']
       }
     ]),
@@ -59,7 +60,8 @@ const webpackProdConfig = merge(common, {
         uglifyOptions: {
           compress: {
             drop_console: true
-          }
+          },
+          parallel: true //使用多进程并行运行来提高构建速度
         }
       }),
       new OptimizeCssAssetsPlugin({

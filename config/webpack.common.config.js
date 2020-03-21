@@ -4,10 +4,11 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:53:30
  * @LastEditors: chenArno
- * @LastEditTime: 2020-03-17 17:36:17
+ * @LastEditTime: 2020-03-21 09:47:00
  */
 const path = require('path')
 const webpack = require('webpack')
+const { outDirSrc } = require('./utils')
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -22,7 +23,7 @@ module.exports = {
   },
   output: {
     filename: 'js/bundle.js',
-    path: path.resolve(__dirname, '../dist')
+    path: outDirSrc
   },
   resolve: {
     // 设置别名
