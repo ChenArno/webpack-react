@@ -17,17 +17,7 @@
 		],
 		"@babel/preset-react"
 	],
-	"plugins": [ 
-		// 移出console
-		[
-			"transform-remove-console",
-			{
-				"exclude": [
-					"error",
-					"warn"
-				]
-			}
-		],
+	"plugins": [
 		"react-hot-loader/babel",
 		"@babel/plugin-proposal-class-properties"
 	]
