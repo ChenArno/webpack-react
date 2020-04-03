@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2020-04-03 09:44:50
+ * @LastEditTime: 2020-04-03 10:04:55
  */
 const { outDirSrc } = require('./utils')
 const path = require('path')
@@ -55,6 +55,7 @@ const webpackProdConfig = merge(common, {
     })
   ],
   optimization: {
+    moduleIds: 'hashed', // 该配置项可以指定使用某一种算法来生成模块ids,短hash ids，长期缓存表现更好
     minimizer: [
       new UglifyJsPlugin({
         uglifyOptions: {
