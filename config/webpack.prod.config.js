@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2020-04-03 10:04:55
+ * @LastEditTime: 2020-04-03 10:10:55
  */
 const { outDirSrc } = require('./utils')
 const path = require('path')
@@ -20,6 +20,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 // 打包独立的css插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// gzip压缩
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 const webpackProdConfig = merge(common, {
   mode: 'production',
@@ -52,6 +54,13 @@ const webpackProdConfig = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash].css',
       chunkFilename: 'css/[id].[hash].css'
+    }),
+    new CompressionWebpackPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.html$|\.css$/, //匹配文件名
+      threshold: 10240, //对超过10k的数据压缩
+      minRatio: 0.8,
+      deleteOriginalAssets: false //不删除源文件
     })
   ],
   optimization: {
