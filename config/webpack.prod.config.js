@@ -4,7 +4,7 @@
  * @Author: chenArno
  * @Date: 2019-12-12 14:59:29
  * @LastEditors: chenArno
- * @LastEditTime: 2020-03-23 14:52:58
+ * @LastEditTime: 2020-04-03 09:44:50
  */
 const { outDirSrc } = require('./utils')
 const path = require('path')
@@ -61,6 +61,7 @@ const webpackProdConfig = merge(common, {
           compress: {
             drop_console: true
           },
+          sourceMap: true,
           parallel: true //使用多进程并行运行来提高构建速度
         }
       }),
@@ -81,6 +82,7 @@ const webpackProdConfig = merge(common, {
         }
       })
     ],
+     // 公有模块
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
