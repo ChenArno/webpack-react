@@ -1,14 +1,23 @@
-import * as React from 'react'
+import React, { useRef } from 'react'
+import Child from './child'
 import styles from './index.less'
 
-class Home extends React.Component<any, any> {
-  constructor(props: any) {
-    super(props)
-  }
-
-  render() {
-    return <div className={styles['wrt-index']}>weclome Home</div>
-  }
+interface HomeProps {}
+const Home: React.FC<HomeProps> = (props) => {
+  const childRef: any = useRef()
+  return (
+    <div className={styles['wrt-index']}>
+      weclome Home
+      <Child ref={childRef} />
+      <span
+        onClick={() => {
+          childRef.current._onclick(1)
+        }}
+      >
+        click
+      </span>
+    </div>
+  )
 }
 
 export default Home
