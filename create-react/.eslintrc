@@ -1,0 +1,30 @@
+{
+  "parser": "babel-eslint",
+  "extends": "react-app",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".ts",
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  // eslint-import-resolver-webpack 别名校验配置
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "./config/webpack.config.js"
+      }
+    }
+  }
+}
