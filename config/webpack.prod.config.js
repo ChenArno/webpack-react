@@ -92,7 +92,7 @@ const webpackProdConfig = merge(common, {
         }
       })
     ],
-     // 公有模块
+    // 公有模块
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
@@ -112,52 +112,6 @@ const webpackProdConfig = merge(common, {
         }
       }
     }
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.less$/,
-        // 表示哪些目录中的 .js 文件不要进行 babel-loader
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]'
-              }
-            }
-          },
-          'postcss-loader',
-          'less-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
-        // 表示哪些目录中的 .js 文件不要进行 babel-loader
-        include: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'less-loader'
-        ]
-      },
-      {
-        test: /\.(sass|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-          'postcss-loader'
-        ]
-      }
-    ]
   }
 })
 

@@ -52,60 +52,7 @@ const webpackDevConfig = merge(common, {
     //   // onErrors:,
     //   clearConsole: true
     // })
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]'
-              }
-            }
-          },
-          'postcss-loader'
-        ]
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader']
-      },
-      {
-        test: /\.less$/,
-        // 表示哪些目录中的 .js 文件不要进行 babel-loader
-        exclude: /node_modules/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[name]__[local]__[hash:base64:5]'
-              }
-            }
-          },
-          'postcss-loader',
-          'less-loader'
-        ]
-      },
-      {
-        test: /\.less$/,
-        // 表示哪些目录中的 .js 文件不要进行 babel-loader
-        include: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
-      },
-      {
-        test: /\.(sass|scss)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-      }
-    ]
-  }
+  ]
 })
 
 module.exports = new Promise((resolve, reject) => {
